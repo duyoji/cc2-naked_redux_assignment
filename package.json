@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
-    "test": "jest"
+    "test": "jest",
+    "webpack": "webpack"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
