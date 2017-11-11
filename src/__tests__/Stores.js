@@ -28,16 +28,6 @@ describe('stores', () => {
     });
   });
 
-  it('should make currentView to be EditView', () => {
-    const store = getInstance();
-    store.dispatch(actions.goEditPage());
-    expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.EDIT,
-      users: [],
-      selectedUser: undefined
-    });
-  });
-
   it('should make currentView to be ListView', () => {
     const store = getInstance();
     store.dispatch(actions.goListPage());
@@ -86,6 +76,18 @@ describe('stores', () => {
         state.users[1]
       ],
       selectedUser: undefined
+    });
+  });
+
+  it('should make currentView to be EditView', () => {
+    const store = getInstance();
+    const state = store.getState();
+    const user = state.users[0];
+    store.dispatch(actions.goEditPage(user));
+    expect(store.getState()).toEqual({
+      ...state,
+      currentView: VIEW_TYPES.EDIT,
+      selectedUser: user
     });
   });
 
