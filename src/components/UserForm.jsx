@@ -6,92 +6,108 @@ import * as actions from '../actions/';
 
 const store = getInstance();
 
-const UserForm = (props) => {
-  const state = store.getState();
-  return <div className="user-form">
-    <div>
-      <label>first name:
-        <input
-          name="firstName"
-          type="text"
-          value={state.firstName}
-          onChange={onChangeHandler}/>
-      </label>
-    </div>
-    <div>
-      <label>last name:
-        <input
-          name="lastName"
-          type="text"
-          value={state.lastName}
-          onChange={onChangeHandler}/>
-      </label>
-    </div>
-    <button
-      className="cancel"
-      onClick={onClickCancel}
-    >cancel</button>
-    <button
-      className="submit"
-      onClick={onClickSubmit}
-    >submit</button>
-    {renderDeleteButtonIfEditView()}
-  </div>
-};
+export default class UserForm extends Component {
+  constructor (props) {
+    super (props);
+    const selectedUser = store.getState().selectedUser;
+    this.state = {
+      firstName: (selectedUser) ? selectedUser.firstName : '',
+      lastName: (selectedUser) ? selectedUser.lastName : '',
+    };
 
-const onChangeHandler = (event) => {
-  const state = store.getState();
-  let firstName = state.firstName;
-  let lastName = state.lastName;
-
-  if(event.target.name === 'firstName') {
-    firstName = event.target.value;
-  } else if(event.target.name === 'lastName') {
-    lastName = event.target.value;
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onClickCancel = this.onClickCancel.bind(this);
+    this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.onClickDelete = this.onClickDelete.bind(this);
   }
 
-  store.dispatch(actions.setUserName(firstName, lastName));
-};
+  onChangeHandler(event) {
+    const state = store.getState();
+    const newState = {...this.state};
 
-const onClickCancel = (event) => {
-  store.dispatch(actions.goListPage());
-};
+    if(event.target.name === 'firstName') {
+      newState.firstName = event.target.value;
+    } else if(event.target.name === 'lastName') {
+      newState.lastName = event.target.value;
+    }
 
-const onClickSubmit = (event) => {
-  const state = store.getState();
-  const firstName = state.firstName || '';
-  const lastName = state.lastName || '';
-
-  if(!firstName.length || !lastName.length) {
-    window.alert('Need to put first name and last name.');
-    return;
+    this.setState(newState);
   }
 
-  if(state.currentView === constants.VIEW_TYPES.CREATE) {
-    store.dispatch(actions.createUser({firstName, lastName}));
-  } else {
-    const id = state.selectedUser.id;
-    store.dispatch(actions.editUser({id, firstName, lastName}));
+  onClickCancel(event) {
+    store.dispatch(actions.goListPage());
   }
-};
 
-const onClickDelete = (event) => {
-  const user = store.getState().selectedUser;
-  const fullName = `${user.firstName} ${user.lastName}`;
-  if(window.confirm(`Are you sure to delete ${fullName}.`)) {
-    store.dispatch(actions.deleteUser(user.id));
+  onClickSubmit(event) {
+    const state = {...this.state};
+    const firstName = state.firstName;
+    const lastName = state.lastName;
+
+    if(!firstName.length || !lastName.length) {
+      window.alert('Need to put first name and last name.');
+      return;
+    }
+
+    if(store.getState().currentView === constants.VIEW_TYPES.CREATE) {
+      store.dispatch(actions.createUser({firstName, lastName}));
+    } else {
+      const id = store.getState().selectedUser.id;
+      store.dispatch(actions.editUser({id, firstName, lastName}));
+    }
   }
-};
 
-const renderDeleteButtonIfEditView = () => {
-  if(store.getState().currentView === constants.VIEW_TYPES.EDIT) {
-    return (
+  onClickDelete(event) {
+    const user = store.getState().selectedUser;
+    const fullName = `${user.firstName} ${user.lastName}`;
+    if(window.confirm(`Are you sure to delete ${fullName}.`)) {
+      store.dispatch(actions.deleteUser(user.id));
+    }
+  }
+
+  renderDeleteButtonIfEditView() {
+    if(store.getState().currentView === constants.VIEW_TYPES.EDIT) {
+      return (
+        <button
+          className="delete"
+          onClick={this.onClickDelete}
+        >delete</button>
+      )
+    }
+  }
+
+  render() {
+    const state = store.getState();
+
+    return <div className="user-form">
+      <div>
+        <label>first name:
+          <input
+            name="firstName"
+            type="text"
+            value={this.state.firstName}
+            ref={(input) => this.inputFN = input}
+            onChange={this.onChangeHandler}/>
+        </label>
+      </div>
+      <div>
+        <label>last name:
+          <input
+            name="lastName"
+            type="text"
+            value={this.state.lastName}
+            ref={(input) => this.inputLN = input}
+            onChange={this.onChangeHandler}/>
+        </label>
+      </div>
       <button
-        className="delete"
-        onClick={onClickDelete}
-      >delete</button>
-    )
+        className="cancel"
+        onClick={this.onClickCancel}
+      >cancel</button>
+      <button
+        className="submit"
+        onClick={this.onClickSubmit}
+      >submit</button>
+      {this.renderDeleteButtonIfEditView()}
+    </div>
   }
-};
-
-export default UserForm;
+}

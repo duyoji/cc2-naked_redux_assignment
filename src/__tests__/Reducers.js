@@ -27,9 +27,7 @@ describe('reducers', () => {
     expect(reducer(state, actions.goEditPage(user))).toEqual({
       ...state,
       currentView: constants.VIEW_TYPES.EDIT,
-      selectedUser: user,
-      firstName: user.firstName,
-      lastName: user.lastName
+      selectedUser: user
     });
 
     expect(reducer(state, actions.goListPage())).toEqual({
@@ -116,24 +114,6 @@ describe('reducers', () => {
       users: [
         user2
       ]
-    });
-  });
-
-  it('should update firstName and lastName when setUserName action callced.', () => {
-    state.currentView = constants.VIEW_TYPES.EDIT;
-    expect(reducer(state, {})).toEqual({
-      ...state,
-      currentView: constants.VIEW_TYPES.EDIT
-    });
-
-    const firstName = 'abc';
-    const lastName = 'def';
-
-    state = reducer(state, actions.setUserName(firstName, lastName));
-    expect(state).toEqual({
-      ...state,
-      firstName,
-      lastName
     });
   });
 });

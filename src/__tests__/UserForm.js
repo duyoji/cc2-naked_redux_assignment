@@ -51,6 +51,13 @@ describe('The UserForm component', () => {
       expect(wrapper.find('.delete').exists()).toEqual(false);
     });
 
+    it('does not contain its own state, since it only utilizes the Single State Treet', () => {
+      expect(wrapper.state()).toEqual({
+        firstName: '',
+        lastName: ''
+      });
+    });
+
     it('should move back to list page when cancel button is clicked', () => {
       expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.CREATE);
       wrapper.find('.cancel').simulate('click');
@@ -118,9 +125,10 @@ describe('The UserForm component', () => {
   describe('When currentView is EditView', () => {
     let wrapper;
     let unsubscribe;
+    let user;
 
     beforeEach(() => {
-      const user = store.getState().users[0];
+      user = store.getState().users[0];
       store.dispatch(actions.goEditPage(user));
       wrapper = mount(
         <UserForm/>
@@ -143,6 +151,13 @@ describe('The UserForm component', () => {
       expect(wrapper.find('.cancel').exists()).toEqual(true);
       expect(wrapper.find('.submit').exists()).toEqual(true);
       expect(wrapper.find('.delete').exists()).toEqual(true);
+    });
+
+    it('does not contain its own state, since it only utilizes the Single State Treet', () => {
+      expect(wrapper.state()).toEqual({
+        firstName: user.firstName,
+        lastName: user.lastName
+      });
     });
 
     describe('Update process.', () => {

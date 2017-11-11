@@ -78,17 +78,6 @@ describe('actions', () => {
     });
   });
 
-  it('should return an object that has type, firstName, lastname.', () => {
-    const firstName = 'first-N';
-    const lastName = 'last-N';
-    store.dispatch(actions.setUserName(firstName, lastName));
-    expect(store.getActions()[0]).toEqual({
-      type: constants.ACTION_TYPES.SET_USER_NAME,
-      firstName,
-      lastName
-    });
-  });
-
   it('should return string value that is same as key.', () => {
 
     expect(Object.keys(constants.ACTION_TYPES).length).toEqual(7);

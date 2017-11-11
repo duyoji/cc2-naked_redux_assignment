@@ -15,8 +15,6 @@ describe('stores', () => {
       currentView: constants.VIEW_TYPES.LIST,
       users: [],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
   });
 
@@ -27,8 +25,6 @@ describe('stores', () => {
       currentView: constants.VIEW_TYPES.CREATE,
       users: [],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
   });
 
@@ -39,8 +35,6 @@ describe('stores', () => {
       currentView: constants.VIEW_TYPES.LIST,
       users: [],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
   });
 
@@ -51,8 +45,6 @@ describe('stores', () => {
       currentView: constants.VIEW_TYPES.CREATE,
       users: [],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
 
     const user1 = createUser('first-N', 'last-N');
@@ -84,8 +76,6 @@ describe('stores', () => {
         state.users[1]
       ],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
   });
 
@@ -98,8 +88,6 @@ describe('stores', () => {
       ...state,
       currentView: constants.VIEW_TYPES.EDIT,
       selectedUser: user,
-      firstName: user.firstName,
-      lastName: user.lastName
     });
   });
 
@@ -115,8 +103,6 @@ describe('stores', () => {
         state.users[1]
       ],
       selectedUser: undefined,
-      firstName: undefined,
-      lastName: undefined
     });
   });
 });

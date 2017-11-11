@@ -42,14 +42,6 @@ const deleteUser = (id) => {
   }
 }
 
-const setUserName = (firstName, lastName) => {
-  return {
-    type: constants.ACTION_TYPES.SET_USER_NAME,
-    firstName,
-    lastName
-  }
-}
-
 export {
   goCreatePage,
   goEditPage,
@@ -57,5 +49,4 @@ export {
   createUser,
   editUser,
   deleteUser,
-  setUserName
 };

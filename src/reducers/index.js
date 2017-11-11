@@ -3,9 +3,7 @@ import constants from '../constants';
 const defaultState = {
   currentView: constants.VIEW_TYPES.LIST,
   users: [],
-  selectedUser: undefined,
-  firstName: undefined,
-  lastName: undefined
+  selectedUser: undefined
 };
 let nextId = 1;
 
@@ -21,16 +19,12 @@ const reducer = (state = defaultState, action) => {
         ...state,
         currentView: constants.VIEW_TYPES.EDIT,
         selectedUser: action.user,
-        firstName: action.user.firstName,
-        lastName: action.user.lastName,
       };
     case constants.ACTION_TYPES.GO_LIST_PAGE:
       return {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
         selectedUser: undefined,
-        firstName: undefined,
-        lastName: undefined
       };
     case constants.ACTION_TYPES.CREATE_USER:
       return {
@@ -44,8 +38,6 @@ const reducer = (state = defaultState, action) => {
             id: nextId++
           }
         ],
-        firstName: undefined,
-        lastName: undefined
       };
     case constants.ACTION_TYPES.EDIT_USER:
       const copiedUsers = state.users.slice();
@@ -60,9 +52,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
         users: copiedUsers,
-        selectedUser: undefined,
-        firstName: undefined,
-        lastName: undefined
+        selectedUser: undefined
       };
     case constants.ACTION_TYPES.DELETE_USER:
       const filteredUsers = state.users.filter(user => {
@@ -74,14 +64,6 @@ const reducer = (state = defaultState, action) => {
         currentView: constants.VIEW_TYPES.LIST,
         users: [...filteredUsers],
         selectedUser: undefined,
-        firstName: undefined,
-        lastName: undefined
-      };
-    case constants.ACTION_TYPES.SET_USER_NAME:
-      return {
-        ...state,
-        firstName: action.firstName,
-        lastName: action.lastName
       };
     default:
       return state
