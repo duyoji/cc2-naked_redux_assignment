@@ -28,7 +28,9 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
-        selectedUser: undefined
+        selectedUser: undefined,
+        firstName: undefined,
+        lastName: undefined
       };
     case constants.ACTION_TYPES.CREATE_USER:
       return {
