@@ -14,7 +14,9 @@ describe('stores', () => {
     expect(store.getState()).toEqual({
       currentView: constants.VIEW_TYPES.LIST,
       users: [],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
   });
 
@@ -24,7 +26,9 @@ describe('stores', () => {
     expect(store.getState()).toEqual({
       currentView: constants.VIEW_TYPES.CREATE,
       users: [],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
   });
 
@@ -34,7 +38,9 @@ describe('stores', () => {
     expect(store.getState()).toEqual({
       currentView: constants.VIEW_TYPES.LIST,
       users: [],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
   });
 
@@ -44,7 +50,9 @@ describe('stores', () => {
     expect(store.getState()).toEqual({
       currentView: constants.VIEW_TYPES.CREATE,
       users: [],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
 
     const user1 = createUser('first-N', 'last-N');
@@ -75,7 +83,9 @@ describe('stores', () => {
         copiedTargetUser,
         state.users[1]
       ],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
   });
 
@@ -87,7 +97,9 @@ describe('stores', () => {
     expect(store.getState()).toEqual({
       ...state,
       currentView: constants.VIEW_TYPES.EDIT,
-      selectedUser: user
+      selectedUser: user,
+      firstName: user.firstName,
+      lastName: user.lastName
     });
   });
 
@@ -102,7 +114,9 @@ describe('stores', () => {
       users: [
         state.users[1]
       ],
-      selectedUser: undefined
+      selectedUser: undefined,
+      firstName: undefined,
+      lastName: undefined
     });
   });
 });

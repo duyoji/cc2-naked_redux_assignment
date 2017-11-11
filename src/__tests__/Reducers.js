@@ -27,7 +27,9 @@ describe('reducers', () => {
     expect(reducer(state, actions.goEditPage(user))).toEqual({
       ...state,
       currentView: constants.VIEW_TYPES.EDIT,
-      selectedUser: user
+      selectedUser: user,
+      firstName: user.firstName,
+      lastName: user.lastName
     });
 
     expect(reducer(state, actions.goListPage())).toEqual({

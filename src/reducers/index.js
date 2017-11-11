@@ -20,7 +20,9 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         currentView: constants.VIEW_TYPES.EDIT,
-        selectedUser: action.user
+        selectedUser: action.user,
+        firstName: action.user.firstName,
+        lastName: action.user.lastName,
       };
     case constants.ACTION_TYPES.GO_LIST_PAGE:
       return {
@@ -69,7 +71,9 @@ const reducer = (state = defaultState, action) => {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
         users: [...filteredUsers],
-        selectedUser: undefined
+        selectedUser: undefined,
+        firstName: undefined,
+        lastName: undefined
       };
     case constants.ACTION_TYPES.SET_USER_NAME:
       return {
