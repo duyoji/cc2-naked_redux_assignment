@@ -47,10 +47,6 @@ describe('The App component', () => {
     expect(wrapper.find('.create-user').exists()).toEqual(true);
   });
 
-  it('does not contain its own state, since it only utilizes the Single State Treet', () => {
-    expect(wrapper.state()).toEqual(null);
-  });
-
   it('renders user items', () => {
     store.dispatch(actions.goListPage());
     expect(wrapper.find('.user-item').length).toEqual(5);
@@ -69,49 +65,5 @@ describe('The App component', () => {
 
     expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.EDIT);
     expect(store.getState().selectedUser).toEqual(store.getState().users[0]);
-  });
-
-  describe('delete process', () => {
-    it('should cancel deleting user if confirm return false.', () => {
-      // mock
-      const originalConfirm = global.confirm;
-      global.confirm = (message) => {
-        return false;
-      };
-
-      expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.LIST);
-      expect(store.getState().users.length).toEqual(5);
-      wrapper.find('.delete-user').first().simulate('click');
-      expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.LIST);
-      expect(store.getState().users.length).toEqual(5);
-
-      // restore
-      global.confirm = originalConfirm;
-    });
-
-    it('should cancel deleting user if confirm return false.', () => {
-      // mock
-      const originalConfirm = global.confirm;
-      let confirmMessage;
-      global.confirm = (message) => {
-        confirmMessage = message;
-        return true;
-      };
-      const targetUser = store.getState().users[0];
-      const fullName = `${targetUser.firstName} ${targetUser.lastName}`;
-      const expectedMessage = `Are you sure to delete ${fullName}.`;
-
-      expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.LIST);
-      expect(store.getState().users.length).toEqual(5);
-      wrapper.find('.delete-user').first().simulate('click');
-      expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.LIST);
-      expect(store.getState().users.length).toEqual(4);
-      expect(confirmMessage).toEqual(expectedMessage);
-      expect(store.getState().users.filter(user => user.id === targetUser.id).length)
-        .toEqual(0);
-
-      // restore
-      global.confirm = originalConfirm;
-    });
   });
 });

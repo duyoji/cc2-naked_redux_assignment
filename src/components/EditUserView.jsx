@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import UserForm from './UserForm'
 
 const EditUserView = (props) => {

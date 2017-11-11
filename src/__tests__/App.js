@@ -53,10 +53,6 @@ describe('The App component', () => {
     expect(wrapper.find('.app').exists()).toEqual(true);
   });
 
-  it('does not contain its own state, since it only utilizes the Single State Treet', () => {
-    expect(wrapper.state()).toEqual(null);
-  });
-
   it('renders the UserListView component when currentView is ListView', () => {
     store.dispatch(actions.goListPage());
 

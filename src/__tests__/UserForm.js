@@ -51,10 +51,6 @@ describe('The UserForm component', () => {
       expect(wrapper.find('.delete').exists()).toEqual(false);
     });
 
-    it('does not contain its own state, since it only utilizes the Single State Treet', () => {
-      expect(wrapper.state()).toEqual(null);
-    });
-
     it('should move back to list page when cancel button is clicked', () => {
       expect(store.getState().currentView).toEqual(constants.VIEW_TYPES.CREATE);
       wrapper.find('.cancel').simulate('click');
