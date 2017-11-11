@@ -1,5 +1,4 @@
 import constants from '../constants';
-import { ACTION_TYPES } from '../actions/';
 
 const defaultState = {
   currentView: constants.VIEW_TYPES.LIST,
@@ -10,24 +9,24 @@ let nextId = 1;
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ACTION_TYPES.GO_CREATE_PAGE:
+    case constants.ACTION_TYPES.GO_CREATE_PAGE:
       return {
         ...state,
         currentView: constants.VIEW_TYPES.CREATE
       };
-    case ACTION_TYPES.GO_EDIT_PAGE:
+    case constants.ACTION_TYPES.GO_EDIT_PAGE:
       return {
         ...state,
         currentView: constants.VIEW_TYPES.EDIT,
         selectedUser: action.user
       };
-    case ACTION_TYPES.GO_LIST_PAGE:
+    case constants.ACTION_TYPES.GO_LIST_PAGE:
       return {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
         selectedUser: undefined
       };
-    case ACTION_TYPES.CREATE_USER:
+    case constants.ACTION_TYPES.CREATE_USER:
       return {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
@@ -40,7 +39,7 @@ const reducer = (state = defaultState, action) => {
           }
         ]
       };
-    case ACTION_TYPES.EDIT_USER:
+    case constants.ACTION_TYPES.EDIT_USER:
       const copiedUsers = state.users.slice();
       copiedUsers.forEach((user) => {
         if(action.user.id === user.id) {
@@ -55,7 +54,7 @@ const reducer = (state = defaultState, action) => {
         users: copiedUsers,
         selectedUser: undefined
       };
-    case ACTION_TYPES.DELETE_USER:
+    case constants.ACTION_TYPES.DELETE_USER:
       const filteredUsers = state.users.filter(user => {
         return action.id !== user.id;
       });

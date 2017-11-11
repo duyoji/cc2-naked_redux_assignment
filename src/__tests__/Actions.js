@@ -20,7 +20,7 @@ describe('actions', () => {
   it('should return an object that has type as a key and "GO_CREATE_PAGE" as a value', () => {
     store.dispatch(actions.goCreatePage());
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.GO_CREATE_PAGE
+      type: constants.ACTION_TYPES.GO_CREATE_PAGE
     });
   });
 
@@ -28,7 +28,7 @@ describe('actions', () => {
     const user = {firstName:'a', lastName:'b', id:1};
     store.dispatch(actions.goEditPage(user));
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.GO_EDIT_PAGE,
+      type: constants.ACTION_TYPES.GO_EDIT_PAGE,
       user
     });
   });
@@ -36,7 +36,7 @@ describe('actions', () => {
   it('should return an object that has type as a key and "goListPage" as a value', () => {
     store.dispatch(actions.goListPage());
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.GO_LIST_PAGE
+      type: constants.ACTION_TYPES.GO_LIST_PAGE
     });
   });
 
@@ -45,7 +45,7 @@ describe('actions', () => {
 
     store.dispatch(actions.createUser(dummyUser));
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.CREATE_USER,
+      type: constants.ACTION_TYPES.CREATE_USER,
       user: {
         firstName: 'dummy-f',
         lastName: 'dummy-l',
@@ -60,7 +60,7 @@ describe('actions', () => {
 
     store.dispatch(actions.editUser(dummyUser));
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.EDIT_USER,
+      type: constants.ACTION_TYPES.EDIT_USER,
       user: {
         firstName: 'dummy-f2',
         lastName: 'dummy-l2',
@@ -73,16 +73,16 @@ describe('actions', () => {
     const id = 3;
     store.dispatch(actions.deleteUser(id));
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.DELETE_USER,
+      type: constants.ACTION_TYPES.DELETE_USER,
       id
     });
   });
 
   it('should return string value that is same as key.', () => {
 
-    expect(Object.keys(actions.ACTION_TYPES).length).toEqual(6);
-    for(let key in actions.ACTION_TYPES) {
-      expect(key).toEqual(actions.ACTION_TYPES[key]);
+    expect(Object.keys(constants.ACTION_TYPES).length).toEqual(6);
+    for(let key in constants.ACTION_TYPES) {
+      expect(key).toEqual(constants.ACTION_TYPES[key]);
     }
   });
 });
