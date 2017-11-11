@@ -83,30 +83,6 @@ describe('actions', () => {
       expect(key).toEqual(actions.ACTION_TYPES[key]);
     }
   });
-
-  // it('should contain an action to select a photo', () => {
-  //   const index = 0;
-
-  //   expect(actions.selectPhoto(index)).toEqual({
-  //     type: 'SELECT_PHOTO',
-  //     index
-  //   });
-  // });
-
-  // describe('asynchronous actions', () => {
-  //   it('should dispatch an action with the type of GET_PHOTOS after fetching photo information is complete', () => {
-  //     const store = mockStore({ photos: [] });
-
-  //     return store.dispatch(actions.getPhotos())
-  //       .then(() => {
-  //         const expectedActions = store.getActions()
-  //         expect(expectedActions[0]).toEqual({
-  //           type: 'GET_PHOTOS',
-  //           photos: ['TestReturnString', 'TestReturnString']
-  //         });
-  //       });
-  //   });
-  // });
 });
 
 function createUser(firstName, lastName, id) {
