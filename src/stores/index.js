@@ -1,5 +1,4 @@
 import { createStore } from 'redux'
-import { VIEW_TYPES } from '../components/App';
 import reducer from '../reducers/'
 
 // singleton pattern

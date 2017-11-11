@@ -2,7 +2,7 @@ jest.unmock('redux-mock-store');
 
 import configureMockStore from 'redux-mock-store';
 import * as actions from '../actions/';
-import { VIEW_TYPES } from '../components/App';
+import constants from '../constants';
 
 const middlewares = [];
 const mockStore = configureMockStore(middlewares);
@@ -11,7 +11,7 @@ describe('actions', () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [],
       selectedUser: undefined
     });

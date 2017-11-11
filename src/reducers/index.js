@@ -1,8 +1,8 @@
-import { VIEW_TYPES } from '../components/App';
+import constants from '../constants';
 import { ACTION_TYPES } from '../actions/';
 
 const defaultState = {
-  currentView: VIEW_TYPES.LIST,
+  currentView: constants.VIEW_TYPES.LIST,
   users: [],
   selectedUser: undefined
 };
@@ -13,24 +13,24 @@ const reducer = (state = defaultState, action) => {
     case ACTION_TYPES.GO_CREATE_PAGE:
       return {
         ...state,
-        currentView: VIEW_TYPES.CREATE
+        currentView: constants.VIEW_TYPES.CREATE
       };
     case ACTION_TYPES.GO_EDIT_PAGE:
       return {
         ...state,
-        currentView: VIEW_TYPES.EDIT,
+        currentView: constants.VIEW_TYPES.EDIT,
         selectedUser: action.user
       };
     case ACTION_TYPES.GO_LIST_PAGE:
       return {
         ...state,
-        currentView: VIEW_TYPES.LIST,
+        currentView: constants.VIEW_TYPES.LIST,
         selectedUser: undefined
       };
     case ACTION_TYPES.CREATE_USER:
       return {
         ...state,
-        currentView: VIEW_TYPES.LIST,
+        currentView: constants.VIEW_TYPES.LIST,
         users: [
           ...state.users,
           {
@@ -51,7 +51,7 @@ const reducer = (state = defaultState, action) => {
 
       return {
         ...state,
-        currentView: VIEW_TYPES.LIST,
+        currentView: constants.VIEW_TYPES.LIST,
         users: copiedUsers,
         selectedUser: undefined
       };
@@ -62,7 +62,7 @@ const reducer = (state = defaultState, action) => {
 
       return {
         ...state,
-        currentView: VIEW_TYPES.LIST,
+        currentView: constants.VIEW_TYPES.LIST,
         users: [...filteredUsers],
         selectedUser: undefined
       };

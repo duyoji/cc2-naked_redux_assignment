@@ -1,6 +1,6 @@
 import { getInstance } from '../stores/';
 import * as actions from '../actions/';
-import { VIEW_TYPES } from '../components/App';
+import constants from '../constants';
 
 describe('stores', () => {
   it('should return same instance', () => {
@@ -12,7 +12,7 @@ describe('stores', () => {
   it('should return default state when dispatch has never called.', () => {
     const store = getInstance();
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [],
       selectedUser: undefined
     });
@@ -22,7 +22,7 @@ describe('stores', () => {
     const store = getInstance();
     store.dispatch(actions.goCreatePage());
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.CREATE,
+      currentView: constants.VIEW_TYPES.CREATE,
       users: [],
       selectedUser: undefined
     });
@@ -32,7 +32,7 @@ describe('stores', () => {
     const store = getInstance();
     store.dispatch(actions.goListPage());
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [],
       selectedUser: undefined
     });
@@ -42,7 +42,7 @@ describe('stores', () => {
     const store = getInstance();
     store.dispatch(actions.goCreatePage());
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.CREATE,
+      currentView: constants.VIEW_TYPES.CREATE,
       users: [],
       selectedUser: undefined
     });
@@ -52,7 +52,7 @@ describe('stores', () => {
     store.dispatch(actions.createUser(user1));
     store.dispatch(actions.createUser(user2));
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         {...user1, id: 1},
         {...user2, id: 2}
@@ -70,7 +70,7 @@ describe('stores', () => {
 
     store.dispatch(actions.editUser(copiedTargetUser));
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         copiedTargetUser,
         state.users[1]
@@ -86,7 +86,7 @@ describe('stores', () => {
     store.dispatch(actions.goEditPage(user));
     expect(store.getState()).toEqual({
       ...state,
-      currentView: VIEW_TYPES.EDIT,
+      currentView: constants.VIEW_TYPES.EDIT,
       selectedUser: user
     });
   });
@@ -98,7 +98,7 @@ describe('stores', () => {
 
     store.dispatch(actions.deleteUser(deleteUserId));
     expect(store.getState()).toEqual({
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         state.users[1]
       ],

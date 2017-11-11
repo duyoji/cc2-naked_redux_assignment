@@ -1,10 +1,10 @@
 import reducer from '../reducers/';
-import { VIEW_TYPES } from '../components/App';
+import constants from '../constants';
 import * as actions from '../actions/';
 
 describe('reducers', () => {
   let state = {
-    currentView: VIEW_TYPES.LIST,
+    currentView: constants.VIEW_TYPES.LIST,
     users: [],
     selectedUser: undefined
   };
@@ -18,7 +18,7 @@ describe('reducers', () => {
   it('should update currentView to "CREATE" when action.type is GO_CREATE_PAGE', () => {
     expect(reducer(state, actions.goCreatePage())).toEqual({
       ...state,
-      currentView: VIEW_TYPES.CREATE
+      currentView: constants.VIEW_TYPES.CREATE
     });
   });
 
@@ -26,44 +26,44 @@ describe('reducers', () => {
     const user = {firstName: 'a', lastName: 'b', id: 1};
     expect(reducer(state, actions.goEditPage(user))).toEqual({
       ...state,
-      currentView: VIEW_TYPES.EDIT,
+      currentView: constants.VIEW_TYPES.EDIT,
       selectedUser: user
     });
 
     expect(reducer(state, actions.goListPage())).toEqual({
       ...state,
-      currentView: VIEW_TYPES.LIST
+      currentView: constants.VIEW_TYPES.LIST
     });
   });
 
   it('should update currentView to "ListView" and add user into state.users when calling actions.createUser', () => {
-    state.currentView = VIEW_TYPES.CREATE;
+    state.currentView = constants.VIEW_TYPES.CREATE;
     expect(reducer(state, {})).toEqual({
       ...state,
-      currentView: VIEW_TYPES.CREATE
+      currentView: constants.VIEW_TYPES.CREATE
     });
 
     const user1 = createUser('dummy-f1', 'dummy-l1');
     state = reducer(state, actions.createUser(user1));
     expect(state).toEqual({
       ...state,
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         {...user1, id: 1}
       ]
     });
 
     // append new user
-    state.currentView = VIEW_TYPES.CREATE;
+    state.currentView = constants.VIEW_TYPES.CREATE;
     expect(reducer(state, {})).toEqual({
       ...state,
-      currentView: VIEW_TYPES.CREATE
+      currentView: constants.VIEW_TYPES.CREATE
     });
     const user2 = createUser('dummy-f2', 'dummy-l2');
     state = reducer(state, actions.createUser(user2));
     expect(state).toEqual({
       ...state,
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         {...user1, id: 1},
         {...user2, id: 2}
@@ -72,10 +72,10 @@ describe('reducers', () => {
   });
 
   it('should update currentView to "ListView" and edit user into state.users when calling actions.editUser', () => {
-    state.currentView = VIEW_TYPES.EDIT;
+    state.currentView = constants.VIEW_TYPES.EDIT;
     expect(reducer(state, {})).toEqual({
       ...state,
-      currentView: VIEW_TYPES.EDIT
+      currentView: constants.VIEW_TYPES.EDIT
     });
 
     const id = 1;
@@ -89,7 +89,7 @@ describe('reducers', () => {
     state = reducer(state, actions.editUser(updatedUser));
     expect(state).toEqual({
       ...state,
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         updatedUser,
         user2
@@ -98,10 +98,10 @@ describe('reducers', () => {
   });
 
   it('should update currentView to "ListView" and delete user when calling actions.deleteUser', () => {
-    state.currentView = VIEW_TYPES.EDIT;
+    state.currentView = constants.VIEW_TYPES.EDIT;
     expect(reducer(state, {})).toEqual({
       ...state,
-      currentView: VIEW_TYPES.EDIT
+      currentView: constants.VIEW_TYPES.EDIT
     });
 
     const deleteUserId = 1;
@@ -110,7 +110,7 @@ describe('reducers', () => {
     state = reducer(state, actions.deleteUser(deleteUserId));
     expect(state).toEqual({
       ...state,
-      currentView: VIEW_TYPES.LIST,
+      currentView: constants.VIEW_TYPES.LIST,
       users: [
         user2
       ]
