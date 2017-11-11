@@ -116,6 +116,24 @@ describe('reducers', () => {
       ]
     });
   });
+
+  it('should update firstName and lastName when setUserName action callced.', () => {
+    state.currentView = constants.VIEW_TYPES.EDIT;
+    expect(reducer(state, {})).toEqual({
+      ...state,
+      currentView: constants.VIEW_TYPES.EDIT
+    });
+
+    const firstName = 'abc';
+    const lastName = 'def';
+
+    state = reducer(state, actions.setUserName(firstName, lastName));
+    expect(state).toEqual({
+      ...state,
+      firstName,
+      lastName
+    });
+  });
 });
 
 function createUser(firstName, lastName, id = undefined) {

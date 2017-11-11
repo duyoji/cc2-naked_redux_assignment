@@ -20,8 +20,7 @@ module.exports = {
         query: {
           presets:[
             'es2015',
-            'react',
-            'transform-object-rest-spread'
+            'react'
           ]
         },
         test: /\.jsx?$/

@@ -3,7 +3,9 @@ import constants from '../constants';
 const defaultState = {
   currentView: constants.VIEW_TYPES.LIST,
   users: [],
-  selectedUser: undefined
+  selectedUser: undefined,
+  firstName: undefined,
+  lastName: undefined
 };
 let nextId = 1;
 
@@ -37,7 +39,9 @@ const reducer = (state = defaultState, action) => {
             lastName: action.user.lastName,
             id: nextId++
           }
-        ]
+        ],
+        firstName: undefined,
+        lastName: undefined
       };
     case constants.ACTION_TYPES.EDIT_USER:
       const copiedUsers = state.users.slice();
@@ -52,7 +56,9 @@ const reducer = (state = defaultState, action) => {
         ...state,
         currentView: constants.VIEW_TYPES.LIST,
         users: copiedUsers,
-        selectedUser: undefined
+        selectedUser: undefined,
+        firstName: undefined,
+        lastName: undefined
       };
     case constants.ACTION_TYPES.DELETE_USER:
       const filteredUsers = state.users.filter(user => {
@@ -64,6 +70,12 @@ const reducer = (state = defaultState, action) => {
         currentView: constants.VIEW_TYPES.LIST,
         users: [...filteredUsers],
         selectedUser: undefined
+      };
+    case constants.ACTION_TYPES.SET_USER_NAME:
+      return {
+        ...state,
+        firstName: action.firstName,
+        lastName: action.lastName
       };
     default:
       return state

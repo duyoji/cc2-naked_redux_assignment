@@ -11,5 +11,6 @@ export default {
     CREATE_USER: 'CREATE_USER',
     EDIT_USER: 'EDIT_USER',
     DELETE_USER: 'DELETE_USER',
+    SET_USER_NAME: 'SET_USER_NAME',
   }
 };

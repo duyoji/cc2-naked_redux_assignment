@@ -1,5 +1,4 @@
 import React from 'react';
-// import jest from 'jest';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';

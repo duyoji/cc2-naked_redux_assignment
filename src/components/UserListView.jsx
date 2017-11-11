@@ -39,7 +39,7 @@ export default class UserListView extends Component {
             onClick={(event) => {
               this.confirmDelete(user);
             }}
-            >edit</button>
+            >delete</button>
         </li>
       );
     });

@@ -19,6 +19,7 @@ const goListPage = () => {
   };
 }
 
+// user => {firstName, lastName}
 const createUser = (user) => {
   return {
     type: constants.ACTION_TYPES.CREATE_USER,
@@ -26,6 +27,7 @@ const createUser = (user) => {
   }
 }
 
+// user => {firstName, lastName, id}
 const editUser = (user) => {
   return {
     type: constants.ACTION_TYPES.EDIT_USER,
@@ -40,11 +42,20 @@ const deleteUser = (id) => {
   }
 }
 
+const setUserName = (firstName, lastName) => {
+  return {
+    type: constants.ACTION_TYPES.SET_USER_NAME,
+    firstName,
+    lastName
+  }
+}
+
 export {
   goCreatePage,
   goEditPage,
   goListPage,
   createUser,
   editUser,
-  deleteUser
+  deleteUser,
+  setUserName
 };
