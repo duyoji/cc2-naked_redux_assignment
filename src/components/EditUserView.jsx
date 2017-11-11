@@ -61,6 +61,7 @@ export default class EditUserView extends Component {
     const state = store.getState();
 
     return <div className="edit-form">
+      <h1>Edit User Page</h1>
       <div>
         <label>first name:
           <input

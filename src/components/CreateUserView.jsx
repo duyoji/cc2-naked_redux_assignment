@@ -51,6 +51,7 @@ export default class CreateUserView extends Component {
     const state = store.getState();
 
     return <div className="create-form">
+      <h1>Create User Page</h1>
       <div>
         <label>first name:
           <input

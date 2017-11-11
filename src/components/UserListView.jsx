@@ -52,6 +52,7 @@ export default class UserListView extends Component {
   render () {
     return (
       <div className="list">
+        <h1>User List Page</h1>
         <ul>
           {this.renderUserList()}
         </ul>
