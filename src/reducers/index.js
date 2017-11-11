@@ -18,12 +18,14 @@ const reducer = (state = defaultState, action) => {
     case ACTION_TYPES.GO_EDIT_PAGE:
       return {
         ...state,
-        currentView: VIEW_TYPES.EDIT
+        currentView: VIEW_TYPES.EDIT,
+        selectedUser: action.user
       };
     case ACTION_TYPES.GO_LIST_PAGE:
       return {
         ...state,
-        currentView: VIEW_TYPES.LIST
+        currentView: VIEW_TYPES.LIST,
+        selectedUser: undefined
       };
     case ACTION_TYPES.CREATE_USER:
       return {
@@ -50,7 +52,8 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         currentView: VIEW_TYPES.LIST,
-        users: copiedUsers
+        users: copiedUsers,
+        selectedUser: undefined
       };
     case ACTION_TYPES.DELETE_USER:
       const filteredUsers = state.users.filter(user => {
@@ -60,7 +63,8 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         currentView: VIEW_TYPES.LIST,
-        users: [...filteredUsers]
+        users: [...filteredUsers],
+        selectedUser: undefined
       };
     default:
       return state

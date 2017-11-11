@@ -25,9 +25,11 @@ describe('actions', () => {
   });
 
   it('should return an object that has type as a key and "GO_EDIT_PAGE" as a value', () => {
-    store.dispatch(actions.goEditPage());
+    const user = {firstName:'a', lastName:'b', id:1};
+    store.dispatch(actions.goEditPage(user));
     expect(store.getActions()[0]).toEqual({
-      type: actions.ACTION_TYPES.GO_EDIT_PAGE
+      type: actions.ACTION_TYPES.GO_EDIT_PAGE,
+      user
     });
   });
 

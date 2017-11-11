@@ -13,9 +13,10 @@ const goCreatePage = () => {
   };
 }
 
-const goEditPage = () => {
+const goEditPage = (user) => {
   return {
-    type: ACTION_TYPES.GO_EDIT_PAGE
+    type: ACTION_TYPES.GO_EDIT_PAGE,
+    user
   };
 }
 

@@ -23,10 +23,11 @@ describe('reducers', () => {
   });
 
   it('should update currentView to "EDIT" when action.type is GO_EDIT_PAGE', () => {
-    state.currentView = VIEW_TYPES.EDIT;
-    expect(reducer(state, {})).toEqual({
+    const user = {firstName: 'a', lastName: 'b', id: 1};
+    expect(reducer(state, actions.goEditPage(user))).toEqual({
       ...state,
-      currentView: VIEW_TYPES.EDIT
+      currentView: VIEW_TYPES.EDIT,
+      selectedUser: user
     });
 
     expect(reducer(state, actions.goListPage())).toEqual({
